@@ -7,6 +7,7 @@ int main(void)
 	printf("Here's another way to print a \
 long string.\n");
 	printf("Here's the new est way to print a "
+	
 	"long string.\n");		/*ANSI C*/
 	return 0;
 }

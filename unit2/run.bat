@@ -1,4 +1,4 @@
 @echo off
-gcc -o %1 %2
+gcc -o %1 %1.c
 %1
-del *.exe
+del %1.exe

@@ -9,6 +9,6 @@ int main(void)
 	printf("%u, %u, %u, %u\n", sizeof(float), sizeof(double), sizeof(long int), sizeof(long));
 	printf("%.1e %.1e %.1e %.1e\n", n1, n2, n3, n4);
 	printf("%ld %ld\n", n3, n4);
-	printf("%ld %ld %ld %ld\n", n4, n3, n2, n1);
+	printf("%ld %ld %ld %ld\n", n1, n2, n3, n4);
 	return 0;
 }
