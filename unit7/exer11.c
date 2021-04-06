@@ -4,42 +4,43 @@
 void menu(void);
 int input_data(double *p, char *names[]);
 void menu_set(void);
-void compute(double *strong, double *unitPrice, char *names[]);
+void compute(double *strong, double *unitPrice, double *price, char *names[], int size);
 void getData(double *p, char *name, int i, int state);
 
 int main(void)
 {
 	double unitPrice[3] = {2.05, 1.15, 1.09};
 	double strong[3] = {0, 0, 0};
-	char names[][] = {"洋蓟", "甜菜", "胡萝卜"};
+	char *names[] = {"洋蓟", "甜菜", "胡萝卜"};
+	double price[] = {0, 0, 0};
 	int status;
 	status = input_data(strong, names);
 	if(0 == status){
 		return 0;
 	}
-	compute(strong, unitPrice, names);
+	compute(strong, unitPrice, price, names, 3);
 	return 0;
 }
 
 void menu(void)
 {
-	printf("******************************"):
+	printf("******************************\n");
 	printf("a.洋蓟\t\t");
 	printf("b.甜菜.\n");
 	printf("c.胡萝卜.\n");
 	printf("s.设置\t\t");
 	printf("q.退出订购.\n");
 	printf("e.nter.计算并输出对应的数据\n");
-	printf("******************************");
+	printf("******************************\n");
 }
 
 void menu_set(void)
 {
-	printf("******************************");
+	printf("******************************\n");
 	printf("p.lus.输入的蔬菜的重量是累加的.\n");
 	printf("r.eplace.由输入的新的重量代替旧的重量.\n");
 	printf("q.退出设置页面.\n");
-	printf("******************************");
+	printf("******************************\n");
 }
 
 int input_data(double *p, char *names[])
@@ -94,7 +95,7 @@ void getData(double *p, char *name, int i, int state)
 {
 	double zl;
 	printf("请输入%s的重量（磅）：", name);
-	while(scanf("lf", &zl) == 0)
+	while(scanf("%lf", &zl) == 0)
 	{
 		while(getchar() != '\n');
 	}
@@ -107,14 +108,28 @@ void getData(double *p, char *name, int i, int state)
 	}
 }
 
-void compute(double *strong, double *unitPrice, char *names[])
+void compute(double *strong, double *unitPrice, double *price, char *names[], int size)
 {
-	int i, size;
-	double total_price, zk, yunfei, bzf;
-	size = sizeof(strong);
+	int i;
+	double dd_price = 0, total_price, zk = 0, yunfei, total_weight = 0; 
 	for(i = 0; i < size; i++)
 	{
 		if(0 < strong[i])
-			printf("购买了%f磅的%s.\n", strong[i], names[i]);
+			printf("%s的单价是%f,购买了%f磅,需花费%f.\n", names[i], unitPrice[i], strong[i], price[i] = strong[i] * unitPrice[i]);
+		dd_price += price[i];
+		total_weight += strong[i];
 	}
-	
+	if(100.0 <= dd_price) {
+		zk = dd_price * 0.05;
+	}
+	if(5 >= total_weight) {
+		yunfei = 6.5;
+	} else if(20 >= total_weight) {
+		yunfei = 14;
+	} else {
+		yunfei = 14;
+		yunfei += (total_weight - 20) * 0.5;
+	}
+	total_price = dd_price - zk + yunfei;
+	printf("订单的总费用：%f, 折扣：%f, 运费和包装費：%f, 所有费用的总额：%f.\n", dd_price, zk, yunfei, total_price);
+}
