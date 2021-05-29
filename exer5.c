@@ -4,6 +4,7 @@
 
 /*第十一章 编程练习 第五题 */
 #include<stdio.h>
+#include<string.h>
 
 char *s_chr(const char *p, int ch);
 
@@ -26,8 +27,9 @@ int main(void) {
             return 0;
         while (search != '\n') {
             printf("从\"%s\"中查找文字\"%c\".\n", data, search);
-            search_result = s_chr(data, search);
+            search_result = s_chr(data, result);
             if (search_result) {
+                fputs("查询到的文字：", stdout);
                 puts(search_result);
             }
             puts("请继续输入查找的文字，空行结束。");
@@ -47,7 +49,7 @@ char *s_chr(const char *p, int ch) {
     while (p[index] != '\0' && p[index] != ch) {
         index++;
     }
-    if (p[index] == '\0')
+    if (p[index] == '\0' && p[index] != ch)
         return NULL;
     else
         return &p[index];
