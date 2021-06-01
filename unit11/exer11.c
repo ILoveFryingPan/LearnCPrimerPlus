@@ -2,6 +2,10 @@
 // Created by android0 on 2021/5/29.
 //
 
+/**
+ * 在学习输入流后，反过头来重新修改该文件
+ */
+
 /*第十一章 编程练习 第十一题 */
 #include<stdio.h>
 #include<ctype.h>
@@ -96,7 +100,7 @@ void menu(void) {
 }
 
 void str_clear(void) {
-   while (getchar() != '\n');
+    while (getchar() != '\n');
 }
 
 void get_list(int leng_array, int leng_char, char list[leng_array][leng_char]) {
@@ -128,9 +132,9 @@ void get_list(int leng_array, int leng_char, char list[leng_array][leng_char]) {
      */
     if (ch != EOF && ch != '\n')
         str_clear();
-    for(;index < leng_array; index ++) {
+    for (; index < leng_array; index++) {
         list[index][0] = '\0';
-    }
+    };
     fflush(stdout);
 }
 
@@ -182,12 +186,10 @@ void puts_list(const char **list, int num) {
         puts(list[i]);
 }
 
-int strlen_word(const char *data)
-{
+int strlen_word(const char *data) {
     int len = 0;
     char *p = data;
-    while(*p && !isspace(*p))
-    {
+    while (*p && !isspace(*p)) {
         len++;
         p++;
     }
@@ -214,11 +216,10 @@ void str_sort_asc(int leng_array, int leng_char, const char list[leng_array][len
     puts_list(asc_list, leng_array);
 }
 
-void str_sort_leng(int leng_array, int leng_char, const char list[leng_array][leng_char], char ** leng_list)
-{
+void str_sort_leng(int leng_array, int leng_char, const char list[leng_array][leng_char], char **leng_list) {
     int i, j, last_leng, after_leng;
     char *temp;
-    if(leng_list[0] == NULL) {
+    if (leng_list[0] == NULL) {
         for (i = 0; i < leng_array; i++) {
             leng_list[i] = list[i];
         }
@@ -237,19 +238,18 @@ void str_sort_leng(int leng_array, int leng_char, const char list[leng_array][le
     puts_list(leng_list, leng_array);
 }
 
-void str_sort_sl(int leng_array, int leng_char, const char list[leng_array][leng_char], char **sl_list)
-{
+void str_sort_sl(int leng_array, int leng_char, const char list[leng_array][leng_char], char **sl_list) {
     int i, j, last_leng, after_leng;
     char *temp;
-    if(sl_list[0] == NULL) {
-        for(i = 0; i < leng_array; i++) {
+    if (sl_list[0] == NULL) {
+        for (i = 0; i < leng_array; i++) {
             sl_list[i] = list[i];
         }
-        for(i = 0; i < leng_array - 1; i++)
-            for(j = i + 1; j < leng_array; j++) {
+        for (i = 0; i < leng_array - 1; i++)
+            for (j = i + 1; j < leng_array; j++) {
                 last_leng = strlen_word(sl_list[i]);
                 after_leng = strlen_word(sl_list[i]);
-                if(last_leng > after_leng) {
+                if (last_leng > after_leng) {
                     temp = sl_list[i];
                     sl_list[i] = sl_list[j];
                     sl_list[j] = temp;
